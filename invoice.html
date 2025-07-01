@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="shortcut icon" href="asset/logo.png" />
+    <link rel="stylesheet" href="bootstrap-5.3.7/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>EFST Invoice</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!--navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!--<a class="navbar-brand" href="#">EFST Super App</a>-->
+        <div class="navbar-nav">
+          <a class="navbar-brand nav-link" href="index.html">EFST Super App</a>
+          <a class="nav-item nav-link" href="#"><b>Invoice</b></a>
+        </div>
+      </nav>
+      <br />
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col" style="border: 2px solid #bec7d4">
+          <!--search engine-->
+          <h2 class="text-center">SEARCH ENGINE</h2>
+          <table class="table table-bordered table-sm text-center">
+            <tbody>
+              <tr>
+                <td class="align-middle" style="width: 20%">Cari Disini</td>
+                <td style="width: 60%"><input type="text" class="form-control border-dark" placeholder="SKU / Nama" aria-label="Search" aria-describedby="button-addon2" /></td>
+                <td><button class="btn btn-outline-secondary" type="button" style="width: 100%" id="button-addon2">Cari Barang</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered table-sm text-center">
+            <!--search result-->
+
+            <thead>
+              <th style="width: 5%" scope="col">No</th>
+              <th style="width: 10%" scope="col">Gambar</th>
+              <th style="width: 30%" scope="col">Nama Barang</th>
+              <th style="width: 5%" scope="col">Stock</th>
+              <th style="width: 10%" scope="col">Harga</th>
+              <th style="width: 5%" scope="col">Action</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>
+                  <img
+                    src="https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/img/VqbcmM/2021/9/2/432497f7-5420-45de-a2f5-89e27157e705.jpg~tplv-aphluv4xwc-origin-jpeg.jpeg?dr=15568&from=520841845&height=300&idc=my2&ps=933b5bde&shcp=2c1af732&shp=1f0b6a75&t=555f072d&width=300"
+                    style="width: 100px; height: 100px"
+                  />
+                </td>
+                <td style="text-align: left">
+                  <h6><b style="color: green">A01B</b></h6>
+                  Catoka Ragum Clamp Klem Meja Tanggem Kecil Mini Bench Table Vise Holder
+                </td>
+                <td>4</td>
+                <td>Rp. 1.299.000</td>
+                <td><button class="btn btn-outline-success" type="button" id="button-addon2">Add</button></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>
+                  <img
+                    src="https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/img/VqbcmM/2021/9/2/432497f7-5420-45de-a2f5-89e27157e705.jpg~tplv-aphluv4xwc-origin-jpeg.jpeg?dr=15568&from=520841845&height=300&idc=my2&ps=933b5bde&shcp=2c1af732&shp=1f0b6a75&t=555f072d&width=300"
+                    style="width: 100px; height: 100px"
+                  />
+                </td>
+                <td style="text-align: left">Catoka Ragum Clamp Klem Meja Tanggem Kecil Mini Bench Table Vise Holder</td>
+                <td>8</td>
+                <td>Rp. 1.299.000</td>
+                <td><button class="btn btn-outline-success" type="button" id="button-addon2">Add</button></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>
+                  <img
+                    src="https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/img/VqbcmM/2021/9/2/432497f7-5420-45de-a2f5-89e27157e705.jpg~tplv-aphluv4xwc-origin-jpeg.jpeg?dr=15568&from=520841845&height=300&idc=my2&ps=933b5bde&shcp=2c1af732&shp=1f0b6a75&t=555f072d&width=300"
+                    style="width: 100px; height: 100px"
+                  />
+                </td>
+                <td style="text-align: left">Catoka Ragum Clamp Klem Meja Tanggem Kecil Mini Bench Table Vise Holder</td>
+                <td>10</td>
+                <td>Rp. 1.299.000</td>
+                <td><button class="btn btn-outline-success" type="button" id="button-addon2">Add</button></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>
+                  <img
+                    src="https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/img/VqbcmM/2021/9/2/432497f7-5420-45de-a2f5-89e27157e705.jpg~tplv-aphluv4xwc-origin-jpeg.jpeg?dr=15568&from=520841845&height=300&idc=my2&ps=933b5bde&shcp=2c1af732&shp=1f0b6a75&t=555f072d&width=300"
+                    style="width: 100px; height: 100px"
+                  />
+                </td>
+                <td style="text-align: left">Catoka Ragum Clamp Klem Meja Tanggem Kecil Mini Bench Table Vise Holder</td>
+                <td>5</td>
+                <td>Rp. 1.299.000</td>
+                <td><button class="btn btn-outline-success" type="button" id="button-addon2">Add</button></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>
+                  <img
+                    src="https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/img/VqbcmM/2021/9/2/432497f7-5420-45de-a2f5-89e27157e705.jpg~tplv-aphluv4xwc-origin-jpeg.jpeg?dr=15568&from=520841845&height=300&idc=my2&ps=933b5bde&shcp=2c1af732&shp=1f0b6a75&t=555f072d&width=300"
+                    style="width: 100px; height: 100px"
+                  />
+                </td>
+                <td style="text-align: left">Catoka Ragum Clamp Klem Meja Tanggem Kecil Mini Bench Table Vise Holder</td>
+                <td>2</td>
+                <td>Rp. 1.299.000</td>
+                <td><button class="btn btn-outline-success" type="button" id="button-addon2">Add</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col" style="border: 2px solid #bec7d4">
+          <!--checkout invoice-->
+          <h2 class="text-center">INVOICE</h2>
+          <div class="container">
+            <!--input invoice-->
+            <table class="table table-bordered table-sm text-center">
+              <thead></thead>
+              <tbody>
+                <tr>
+                  <td><input type="text" class="form-control border-dark" name="tbi2" placeholder="Nama" /></td>
+                  <td><input type="date" class="form-control border-dark" name="tbi2" placeholder="Tanggal" /></td>
+                  <td>
+                    <!--<input type="text" class="form-control border-dark" name="tbi2" placeholder="Pengiriman" />-->
+                    <select class="custom-select border-dark text-start" id="inlineFormCustomSelectPref">
+                      <option selected>Pengiriman</option>
+                      <option value="1">COD</option>
+                      <option value="2">Kirim</option>
+                      <option value="3">Lainnya</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="form-control border-dark" name="tbi2" placeholder="No HP" /></td>
+                  <td><input type="text" class="form-control border-dark" name="tbi2" placeholder="Invoice/Resi" /></td>
+                  <td>
+                    <select class="custom-select border-dark text-start" id="inlineFormCustomSelectPref">
+                      <option selected>Pembayaran</option>
+                      <option value="1">QRIS</option>
+                      <option value="2">Transfer</option>
+                      <option value="3">Cash</option>
+                      <option value="3">Term-1 (DP)</option>
+                      <option value="3">Term-2 (Lunas)</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <input type="text" class="form-control border-dark" name="tbi2" placeholder="Alamat" />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="container">
+            <!--table cart-->
+
+            <table class="table table-bordered table-sm text-center">
+              <thead>
+                <th style="width: 5%" scope="col">No</th>
+                <th style="width: 10%" scope="col">Gambar</th>
+                <th style="width: 40%" scope="col">Nama Barang</th>
+                <th style="width: 20%" scope="col">Harga</th>
+                <th style="width: 5%" scope="col">QTY</th>
+                <th style="width: 20%" scope="col">Total</th>
+                <th style="width: 10%" scope="col">Action</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <img
+                      src="https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/img/VqbcmM/2021/9/2/432497f7-5420-45de-a2f5-89e27157e705.jpg~tplv-aphluv4xwc-origin-jpeg.jpeg?dr=15568&from=520841845&height=300&idc=my2&ps=933b5bde&shcp=2c1af732&shp=1f0b6a75&t=555f072d&width=300"
+                      style="width: 100px; height: 100px"
+                    />
+                  </td>
+                  <td style="text-align: left">
+                    <h6><b style="color: red">A01B</b></h6>
+                    Catokz Ragum Clamp Klem Meja Tanggem Kecil Mini Bench Table Vise Holder
+                  </td>
+                  <td>Rp. 1.299.000</td>
+                  <td><input type="number" style="text-align: center; width: 50px" id="amountInput" value="1" /></td>
+                  <td>Rp. 1.299.000</td>
+                  <td><button class="btn btn-outline-danger" type="button" id="button-addon2">Del</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="container">
+            <!--summary-->
+
+            <h5 class="text-right">Order Summary</h5>
+            <table class="table table-bordered table-sm text-right">
+              <thead>
+                <th style="width: 10%"></th>
+                <th style="width: 40%"></th>
+                <th style="width: 25%"></th>
+                <th style="width: 25%"></th>
+              </thead>
+              <tbody>
+                <tr>
+                  <!--<input type="text" class="form-control border-dark" name="tbi2" placeholder="Rp. 1.000.000" />-->
+                  <td></td>
+                  <td class="text-left">
+                    <input class="form-check-input" type="checkbox" id="defaultCheck1" checked />
+                    <label class="form-check-label" for="defaultCheck1"> Kurangi Stock Database </label>
+                  </td>
+                  <td>Grand Total</td>
+                  <td>Rp. 1.000.000</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="text-left">
+                    <input class="form-check-input" type="checkbox" id="defaultCheck1" checked />
+                    <label class="form-check-label" for="defaultCheck1"> Buat File PDF </label>
+                  </td>
+                  <td>Ongkos Kirim</td>
+                  <td>Rp. 12.000</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="text-left">
+                    <input class="form-check-input" type="checkbox" id="defaultCheck1" checked />
+                    <label class="form-check-label" for="defaultCheck1" d> Print Kertas </label>
+                  </td>
+                  <td>Diskon</td>
+                  <td>Rp. 80.000</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Pajak</td>
+                  <td>Rp. 20.500</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Lainnya</td>
+                  <td>Rp. 0</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Total Bayar</td>
+                  <td>Rp. 1.112.500</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-outline-primary me-md-2" type="button" style="width: 150px" id="button-addon2">Action</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="bootstrap-5.3.7/dist/js/bootstrap.bundle.js"></script>
+  </body>
+</html>
