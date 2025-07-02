@@ -1,0 +1,35 @@
+add audio script
+add js file
+
+resi track
+	- progress view, print -> collect -> qc -> pack -> jegal -> kirim -> sukses
+	- hitung A1
+	- tab prefix
+	- tab open history
+invoice
+	- tab search & CO kurang SKU
+	- kurang stok cod (api)
+	- fast search -> print
+	- pencatatan akuntansi (dari print di rekap dulu)
+	- cashier no edit
+crud
+	- database (create add new, read fast search, u, delete) 
+restock
+	- file belanja B3 & QC A8
+	- read from excell MP -> matching
+	- list low stock, autolearn priority
+	- fast search
+	- filter by supplier
+	- list barang sudah tercheckout (whitelist)
+	- status (checkout, sampai)
+request
+	- database delete, add new, edit sku, edit judul, dll
+	- belanja
+	- chat
+komplain
+
+analyzer 
+	- absensi (track)
+	- data error
+
+
