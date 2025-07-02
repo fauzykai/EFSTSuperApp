@@ -33,11 +33,14 @@
       </div>
       <div class="row text-start"> <!--baris input 1-->
         <div class="col">
-          <form action="" method="POST" autocomplete="off">
+          <form action="" method="POST" autocomplete="off" name="f1">
           <input type="text" class="form-control border-dark" name="tb_input_scan" placeholder="SPXID057-In Print"></div>
           </form>
+          
         <div class="col">
+          <form action="" method="POST" autocomplete="off" id="tb2">
         <input type="text" class="form-control border-dark" name="tbi2" placeholder="SPXID057-In Search"></div>
+          </form>
         <div class="col">
         <input type="text" class="form-control border-dark" name="tbi3" placeholder="SPXID057-In Send"></div>
       </div> 
@@ -408,7 +411,7 @@
     <script>//enter detection
         // Optional: Prevent accidental form submission if needed
         document.addEventListener("DOMContentLoaded", function () {
-            const form = document.getElementById("myForm");
+            const form = document.getElementById("f1");
             form.addEventListener("keypress", function (event) {
                 if (event.key === "Enter") {
                     form.submit(); // Submit the form when Enter is pressed
@@ -417,10 +420,15 @@
         });
       </script>
       <script src="bootstrap-5.3.7/dist/js/bootstrap.bundle.js"></script>
-      <?php
+<?php
 if (isset($_POST['submit']))
 {
   echo "testa";
+}
+
+if(isset($_POST['b2'])) {
+echo "b2 press";
+//dbopen();
 }
 ?>
   </body>
