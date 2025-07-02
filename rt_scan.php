@@ -28,8 +28,8 @@
       </div>
       <div class="row">
         <!--info kurir-->
-        <h1 style="color: blue">LAZADA</h1>
-        <?filter($_POST["tb_input_scan"]);?>
+        <h1 id="demo" style="color: blue">LAZADA</h1>
+        <?//filter($_POST["tb_input_scan"]);?>
       </div>
       <div class="row">
         <!--10 data terakhir-->
@@ -209,11 +209,11 @@
   </body>
   <script src="bootstrap-5.3.7/dist/js/bootstrap.bundle.js"></script>
   <script>
-    //function myFunction() {
-    //document.getElementById("demo").style.fontSize = "25px"; 
-    //document.getElementById("demo").style.fontSize = "25px"; 
-    //document.getElementById("demo").style.color = "red";
-    //document.getElementById("demo").style.backgroundColor = "yellow";   
-    //}  
+    function myFunction() {
+    document.getElementById("demo").style.fontSize = "25px"; 
+    document.getElementById("demo").style.fontSize = "25px"; 
+    document.getElementById("demo").style.color = "red";
+    document.getElementById("demo").style.backgroundColor = "yellow";   
+    }  
     </script>
 </html>
