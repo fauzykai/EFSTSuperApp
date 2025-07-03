@@ -40,12 +40,22 @@ echo "b1 press";
 
 if(isset($_POST['b2'])) {
 echo "b2 press";
+audio_notf("asset/bell.mp3");
 //dbopen();
+//db_read();
 }
 
 if(isset($_POST['b3'])) {
 echo "b3 press";
-db_write_scan();
+audio_notf("asset/C_instant.mp3");
+//db_write_scan();
+}
+
+function audio_notf($c)
+{
+    $a_url=$c;
+    //$a_url = "asset/bell.mp3";
+    echo "<audio autoplay><source src={$a_url} type='audio/mp3'></audio>";
 }
 
 function db_write_scan()
@@ -59,6 +69,29 @@ function db_write_scan()
     $sql = "INSERT INTO resi_tracker (Resi) VALUES ('$val')";
     $conn->query($sql);
     $conn->close();
+}
+
+function db_read()
+{
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "efstsa";
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    
+    $q_command= "SELECT * FROM `resi_tracker`";
+    $result = $conn->query($q_command);
+    if ($result->num_rows>0){
+        while($row = $result->fetch_assoc())
+        {
+        echo "a" .
+        $row ["Resi"]. "<br>";
+        }
+    }
+    else{
+        echo "0 result";
+    }
+$conn->close();
 }
 
 /*

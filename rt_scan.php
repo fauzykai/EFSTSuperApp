@@ -1,3 +1,17 @@
+<?php 
+  date_default_timezone_set('Asia/Jakarta');
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "efstsa";
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  
+  include 'func.php';
+  $globalVar ="gv-";
+  $gv_kurir = "gvc-";
+  
+  ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,9 +29,10 @@
         <h4>Scanner Input</h4>
         TG3522075901 / JX5196095628
         <br>
+        <!--
         DELETE FROM resi_tracker;
-        <br>
         ALTER TABLE resi_tracker AUTO_INCREMENT = 0;
+        -->
       </div>
 
       <div class="row">
@@ -28,15 +43,47 @@
       </div>
       <div class="row">
         <!--info kurir-->
-        <h1 id="demo" style="color: blue">LAZADA</h1>
-        <?//filter($_POST["tb_input_scan"]);?>
+        <h1 id="demo" style="color: blue"><?php if ($_SERVER["REQUEST_METHOD"] == "POST") //enter press / refresh
+        {filter($_POST["tb_input_scan"]);}?></h1>
       </div>
       <div class="row">
         <!--10 data terakhir-->
-        <label>10 Data Terakhir</label>
-        <textarea class="form-control border-dark" id="tbo1" rows="10" value="sum" placeholder="SPXID057-..."></textarea>
-      </div>
+        <div class="table-responsive" style="max-height:300px;">
+          <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Resi</th>
+                  <th>Kurir</th>
+                  <th>Waktu Scan</th>
+                  <th>Waktu Kirim</th>
+                </tr>
+              </thead>
+                <tbody>
+                  <?php
+                  if ($_SERVER["REQUEST_METHOD"] == "POST"){db_read();}
+                  ?>
+                </tbody>
+          </table>
+        </div>
 
+
+
+        <!--
+        <textarea class="form-control border-dark" id="tbo1" rows="10" value="sum" placeholder="SPXID057-..."><?php
+           //if(isset($_POST['b1'])) {db_read();}
+           //if ($_SERVER["REQUEST_METHOD"] == "POST"){db_read();}
+           ?>
+           </textarea>
+        -->
+      </div>
+      <div class="row"><!--test button-->
+        <form method="POST" action="">
+        <input type="submit" name="b1" value="btn text">
+        </form>
+        <div>
+        </div>
+      </div>
       <div class="row">
         <!--tabel 1-->
         <h3 class="text-start text-danger"><Br />Tabel Resi Print</h3>
@@ -141,26 +188,56 @@
         </table>
       </div>
     </div>
-<?php
-    include 'func.php';
-    $globalVar ="gv-";
-    $gv_kurir = "gvc-";
-    //$_POST["tb_input_scan"]="";
+  <?php
+    /*if(isset($_POST['b1'])) {
+    echo "b1 press";
+    db_read();
+    }
+    */
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") //enter press
+    if ($_SERVER["REQUEST_METHOD"] == "POST") //enter press / refresh
     {
-      filter($_POST["tb_input_scan"]);
+      //filter($_POST["tb_input_scan"]);
       db_write_scan();
-      //filter()
-      //gettime();
-      //display();
-      //echo $globalVar;
-      //echo "testa";
+      //db_read();
+    }
+    function db_read()
+    {  
+      global $conn;
+      $q_command= "SELECT * FROM `resi_tracker` ORDER BY `resi_tracker`.`No` DESC";
+      $result = $conn->query($q_command);
+
+      if ($result->num_rows>0){
+          while($row = $result->fetch_assoc())
+          {
+            echo '<tr>
+            <td scope="row">'.$row["No"].'</td>
+            <td>'.$row["Resi"].'</td>
+            <td>'.$row["Kurir"].'</td>
+            <td>'.$row["Scan_Time"].'</td>
+            <td>'.$row["Send_Time"].'</td>
+            </tr>';
+            
+          /*echo $row ["Resi"]." | " .
+          $row["Scan_Time"]. " | ".
+          "\n";
+          */
+          }
+        }
+        else{echo "0 result";}
+        $conn->close();
+    }
+    
+    function audio_notf($a_url)
+    {
+        //$a_url = "asset/bell.mp3";
+        echo "<audio autoplay><source src={$a_url} type='audio/mp3'></audio>";
     }
 
     function db_write_scan()
     {
       global $gv_kurir;
+      //global $conn;
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -169,8 +246,8 @@
         $v_resi =$_POST['tb_input_scan']; //name di form
         $v_kurir = $gv_kurir;
         $v_scan_time = date("Y-m-d H:i:s");
-        $sql = "INSERT INTO resi_tracker (Resi,Kurir,Scan_Time) VALUES ('$v_resi','$v_kurir','$v_scan_time')";
-        $conn->query($sql);
+        $q_command = "INSERT INTO resi_tracker (Resi,Kurir,Scan_Time) VALUES ('$v_resi','$v_kurir','$v_scan_time')";
+        $conn->query($q_command);
         $conn->close();
     }
 
@@ -181,7 +258,8 @@
       elseif(strlen($x)==12 && substr($x,0,2)=="JX"){$hsl="T-JNT";}
       elseif(strlen($x)==13 && substr($x,0,2)=="TK"){$hsl="T-JNE";}
       else{$hsl="X";}
-      echo "<h1 style='color: blue'>{$hsl}</h1>";
+      //echo "<h1 style='color: blue'>{$hsl}</h1>";
+      echo $hsl;
       $gv_kurir=$hsl;
        
       //echo "<h1 id="demo" style="color: blue">LAZADA</h1>"
