@@ -251,16 +251,42 @@
         $conn->close();
     }
 
-    function filter($x){
-      global $gv_kurir;
-      $hsl= "";
-      if (strlen($x)==12 && substr($x,0,2)=="TG"){$hsl="T-JNE";}
-      elseif(strlen($x)==12 && substr($x,0,2)=="JX"){$hsl="T-JNT";}
-      elseif(strlen($x)==13 && substr($x,0,2)=="TK"){$hsl="T-JNE";}
-      else{$hsl="X";}
+    function filter($ri){
+      global $gv_nk;
+      global $gv_ak;
+      $ik=""; //id kurir
+      $nk=""; //nama kurir
+      $wk=""; //warna kurir
+      $ak=""; //audio kurir
+      if (strlen($ri)==12 && substr($ri,0,2)=="TG"){$nk="T-JNE"; $wk="";$ak="";}
+      elseif(strlen($ri)==12 && substr($ri,0,2)=="JX"){$nk="T-JNT";$wk="";$ak="";}
+      elseif(strlen($ri)==13 && substr($ri,0,2)=="TK"){$nk="T-JNE";$wk="";$ak="";}
+      elseif(strlen($ri)==16 && substr($ri,0,4)=="TSLP"){$nk="T-LYN";$wk="";$ak="";}
+      elseif(strlen($ri)==16 && substr($ri,0,4)=="NJVT"){$nk="T-NNJ";$wk="";$ak="";}
+      elseif(strlen($ri)==13 && substr($ri,0,4)=="TSWH"){$nk="T-WHN";$wk="";$ak="";}
+      elseif(strlen($ri)==10 && substr($ri,0,2)=="56"){$nk="T-SCP";$wk="";$ak="";}
+      elseif(strlen($ri)==10 && substr($ri,0,2)=="44"){$nk="S-SCP";$wk="";$ak="";}
+      elseif(strlen($ri)==13 && substr($ri,0,2)=="CM"){$nk="S-JNE";$wk="";$ak="";}
+      elseif(strlen($ri)==13 && substr($ri,0,3)=="SHP"){$nk="S-NNJ";$wk="";$ak="";}
+      elseif(strlen($ri)==14 && substr($ri,0,2)=="11"){$nk="S-AAJ";$wk="";$ak="";}
+      elseif(strlen($ri)==14 && substr($ri,0,2)=="25"){$nk="S-INS";$wk="";$ak="asset/c_instant.mp3";}
+      elseif(strlen($ri)==17 && substr($ri,0,3)=="SPX"){$nk="S-SPX";$wk="";$ak="";}
+      elseif(strlen($ri)==20 && substr($ri,0,4)=="SHPE"){$nk="S-POS";$wk="";$ak="";}
+      elseif(strlen($ri)==15 && substr($ri,0,2)=="LX"){$nk="L-LEL";$wk="";$ak="";}
+      elseif(strlen($ri)==17 && substr($ri,0,6)=="TTSPOS"){$nk="T-POS";$wk="";$ak="";}
+      elseif(strlen($ri)==13 && substr($ri,0,2)=="JY"){$nk="S-JNE";$wk="";$ak="";}
+      elseif(strlen($ri)==12 && substr($ri,0,2)=="JZ"){$nk="L-JNT";$wk="";$ak="";}
+      elseif(strlen($ri)==15 && substr($ri,0,4)=="JNAP"){$nk="L-JNE";$wk="";$ak="";}
+      elseif(strlen($ri)==15 && substr($ri,0,3)=="TAA"){$nk="T-AAJ";$wk="";$ak="";}
+      elseif(strlen($ri)==17 && substr($ri,0,5)=="TKJNT"){$nk="T-JNT";$wk="";$ak="";}
+      elseif(strlen($ri)==17 && substr($ri,0,4)=="TKSC"){$nk="T-SCP";$wk="";$ak="";}
+      elseif(strlen($ri)==20 && substr($ri,0,6)=="TIKITT"){$nk="T-TKI";$wk="";$ak="";}
+      elseif(strlen($ri)==16 && substr($ri,0,4)=="NLID"){$nk="L-NNJ";$wk="";$ak="";}
+      elseif(strlen($ri)==13 && substr($ri,0,2)=="JT"){$nk="T-JNT";$wk="";$ak="";}
+      else{$nk="X";$ak="asset/a1.mp3";}
       //echo "<h1 style='color: blue'>{$hsl}</h1>";
-      echo $hsl;
-      $gv_kurir=$hsl;
+      echo $nk;
+      $gv_ak=$nk;
        
       //echo "<h1 id="demo" style="color: blue">LAZADA</h1>"
       //echo $hsl;
