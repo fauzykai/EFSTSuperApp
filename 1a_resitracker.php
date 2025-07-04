@@ -20,7 +20,7 @@
 
   include 'asset/func.php';
   $globalVar ="gv-";
-  $gv_kurir = "gvc-";
+  $gv_nk = "gvc-"; //nama kurir
   ?>
 
 <!DOCTYPE html>
@@ -50,7 +50,9 @@
       <div class="row">
         <!--info kurir-->
         <h1 id="demo" style="color: blue"><?php if ($_SERVER["REQUEST_METHOD"] == "POST") //enter press / refresh
-        {filter($_POST["tb_input_scan"]);}?></h1>
+        {filter($_POST["tb_input_scan"]);}
+        db_write();
+        ?></h1>
       </div>
       <div class="row">
         <!--10 data terakhir-->
@@ -72,9 +74,6 @@
                 </tbody>
           </table>
         </div>
-
-
-
         <!--
         <textarea class="form-control border-dark" id="tbo1" rows="10" value="sum" placeholder="SPXID057-..."><?php
            //if(isset($_POST['b1'])) {db_read();}
@@ -204,18 +203,20 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") //enter press / refresh
     {
       //filter($_POST["tb_input_scan"]);
-      db_write_scan();
+      //db_write();
       //db_read();
     }
     function db_read()
     {  
+      //bikin kosong"" date time ketika scan_kirim 00:00
+      //only read db after success input
       global $servername;
       global $username;
       global $password;
       global $dbname; 
       $conn = new mysqli($servername, $username, $password, $dbname);
           
-      $q_command= "SELECT * FROM `resi_tracker` ORDER BY `resi_tracker`.`No` DESC";
+      $q_command= "SELECT * FROM `resi_tracker` ORDER BY `resi_tracker`.`No` DESC LIMIT 10";
       $result = $conn->query($q_command);
 
       if ($result->num_rows>0){
@@ -238,24 +239,18 @@
         else{echo "0 result";}
         $conn->close();
     }
-    
-    function audio_notf($a_url)
-    {
-        //$a_url = "asset/bell.mp3";
-        echo "<audio autoplay><source src={$a_url} type='audio/mp3'></audio>";
-    }
 
-    function db_write_scan()
+    function db_write()
     {
-      global $gv_kurir;
-      //global $conn;
+      //kalo bisa scan_time default blank not 00:00
+        global $gv_nk;
         global $servername;
         global $username;
         global $password;
         global $dbname;
         $conn = new mysqli($servername, $username, $password, $dbname);
         $v_resi =$_POST['tb_input_scan']; //name di form
-        $v_kurir = $gv_kurir;
+        $v_kurir = $gv_nk;
         $v_scan_time = date("Y-m-d H:i:s");
         $q_command = "INSERT INTO resi_tracker (Resi,Kurir,Scan_Time) VALUES ('$v_resi','$v_kurir','$v_scan_time')";
         $conn->query($q_command);
@@ -263,12 +258,22 @@
     }
 
     function filter($ri){ //ri=resi input
-      global $gv_nk;
-      global $gv_ak;
+      //alert / disable when input kosong, double, 
+      /*
+      SELECT COUNT(*) AS count
+      FROM resi_tracker
+      WHERE Resi = 'JX5196095628' //resi val
+
+      -- If count = 0, proceed with the insertion
+      INSERT INTO 
+      if count > 0, alert
+      */
+      global $gv_nk; //nama kurir
+      //global $gv_ak; //audio kurir
       $ik=""; //id kurir
       $nk=""; //nama kurir
       $wk=""; //warna kurir
-      $ak=""; //audio kurir
+      $ak="asset/mp3/notif_1.mp3"; //audio kurir
       if (strlen($ri)==12 && substr($ri,0,2)=="TG"){$nk="T-JNE"; $wk="";$ak="";}
       elseif(strlen($ri)==12 && substr($ri,0,2)=="JX"){$nk="T-JNT";$wk="";$ak="";}
       elseif(strlen($ri)==13 && substr($ri,0,2)=="TK"){$nk="T-JNE";$wk="";$ak="";}
@@ -280,7 +285,7 @@
       elseif(strlen($ri)==13 && substr($ri,0,2)=="CM"){$nk="S-JNE";$wk="";$ak="";}
       elseif(strlen($ri)==13 && substr($ri,0,3)=="SHP"){$nk="S-NNJ";$wk="";$ak="";}
       elseif(strlen($ri)==14 && substr($ri,0,2)=="11"){$nk="S-AAJ";$wk="";$ak="";}
-      elseif(strlen($ri)==14 && substr($ri,0,2)=="25"){$nk="S-INS";$wk="";$ak="asset/c_instant.mp3";}
+      elseif(strlen($ri)==14 && substr($ri,0,2)=="25"){$nk="S-INS";$wk="";$ak="asset/mp3/kurir_instant.mp3";}
       elseif(strlen($ri)==17 && substr($ri,0,3)=="SPX"){$nk="S-SPX";$wk="";$ak="";}
       elseif(strlen($ri)==20 && substr($ri,0,4)=="SHPE"){$nk="S-POS";$wk="";$ak="";}
       elseif(strlen($ri)==15 && substr($ri,0,2)=="LX"){$nk="L-LEL";$wk="";$ak="";}
@@ -297,7 +302,9 @@
       else{$nk="X";$ak="asset/a1.mp3";}
       //echo "<h1 style='color: blue'>{$hsl}</h1>";
       echo $nk;
-      $gv_ak=$nk;
+      $gv_nk=$nk;
+      if ($ak==""){$ak="asset/mp3/notif_1.mp3";}
+      echo "<audio autoplay><source src={$ak} type='audio/mp3'></audio>";
        
       //echo "<h1 id="demo" style="color: blue">LAZADA</h1>"
       //echo $hsl;
@@ -305,20 +312,12 @@
       //echo '<script type="text/javascript">playSound();</script>';
       //echo '<script type="text/javascript">play_sound();</script>';
       //print("<script>alert('resi tidak terdefinisi');</script>");
-      }
-
-     function gettime()
-    {
-      date_default_timezone_set('Asia/Jakarta');
-      echo "time=" . date("Y-m-d H:i:s");
-      $dateval=date("Y-m-d H:i:s");
-      $GLOBALS['dateval'] = $dateval;
-      //echo $dateval;
     }
-
-    function display()
+    
+    function audio_notf($a_url)
     {
-      echo $GLOBALS['dateval'];
+        //$a_url = "asset/bell.mp3";
+        echo "<audio autoplay><source src={$a_url} type='audio/mp3'></audio>";
     }
 ?>
   </body>
