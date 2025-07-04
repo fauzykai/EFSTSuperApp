@@ -7,7 +7,7 @@
     
     <link rel="shortcut icon" href="asset/logo.png" />
     <link rel="stylesheet" href="bootstrap-5.3.7/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="asset/style.css" />
 
   </head>
   <body>
@@ -22,7 +22,6 @@
             <a class="nav-item nav-link" href="#"><b>Resi Tracker</b></a>
           </div>
         </nav>
-        <?php include 'dbcon.php'?>
         <br>
     </div>
     <div class="container"><!--textbox-->
@@ -420,17 +419,6 @@
         });
       </script>
       <script src="bootstrap-5.3.7/dist/js/bootstrap.bundle.js"></script>
-<?php
-if (isset($_POST['submit']))
-{
-  echo "testa";
-}
-
-if(isset($_POST['b2'])) {
-echo "b2 press";
-//dbopen();
-}
-?>
   </body>
 </html>
 

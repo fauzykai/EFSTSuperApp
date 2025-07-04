@@ -1,15 +1,26 @@
 <?php 
   date_default_timezone_set('Asia/Jakarta');
+   //local
   $servername = "localhost";
   $username = "root";
   $password = "";
   $dbname = "efstsa";
-  $conn = new mysqli($servername, $username, $password, $dbname);
   
-  include 'func.php';
+  /* //hostinger
+  $servername = "127.0.0.1:3306";
+  $username = "u415351248_store";
+  $password = "Rahasialabplc11!";
+  $dbname = "u415351248_efstsa";
+  */
+
+  /*
+  DELETE FROM resi_tracker;
+  ALTER TABLE resi_tracker AUTO_INCREMENT = 0;
+  */
+
+  include 'asset/func.php';
   $globalVar ="gv-";
   $gv_kurir = "gvc-";
-  
   ?>
 
 <!DOCTYPE html>
@@ -29,12 +40,7 @@
         <h4>Scanner Input</h4>
         TG3522075901 / JX5196095628
         <br>
-        <!--
-        DELETE FROM resi_tracker;
-        ALTER TABLE resi_tracker AUTO_INCREMENT = 0;
-        -->
       </div>
-
       <div class="row">
         <!--input-->
         <form action="" method="POST" autocomplete="off" name="form1">
@@ -203,7 +209,12 @@
     }
     function db_read()
     {  
-      global $conn;
+      global $servername;
+      global $username;
+      global $password;
+      global $dbname; 
+      $conn = new mysqli($servername, $username, $password, $dbname);
+          
       $q_command= "SELECT * FROM `resi_tracker` ORDER BY `resi_tracker`.`No` DESC";
       $result = $conn->query($q_command);
 
@@ -238,10 +249,10 @@
     {
       global $gv_kurir;
       //global $conn;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "efstsa";
+        global $servername;
+        global $username;
+        global $password;
+        global $dbname;
         $conn = new mysqli($servername, $username, $password, $dbname);
         $v_resi =$_POST['tb_input_scan']; //name di form
         $v_kurir = $gv_kurir;
@@ -251,7 +262,7 @@
         $conn->close();
     }
 
-    function filter($ri){
+    function filter($ri){ //ri=resi input
       global $gv_nk;
       global $gv_ak;
       $ik=""; //id kurir
